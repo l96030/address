@@ -1,730 +1,243 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full dark:pintree-bg-gray-900 bg-white">
-
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pintree</title>
-  <meta name="keywords" content="Pintree, Bookmarks, Link Management, Export Bookmarks, Website Bookmarks">
-  <meta name="description"
-    content="Pintree is a powerful tool that helps you manage and export your browser bookmarks, converting them into an aesthetically pleasing website that is easy to share and access.">
-  <meta name="author" content="Pintree">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.pintree.io">
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="60283522-e543-4dcb-bd47-e855f1e0a635"></script>
-  <script defer data-domain="pintree.io" src="https://plausible.io/js/script.js"></script>
-  <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "n75ecz0sud");
-  </script>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-P1JF3QTQ79');
-  </script>
-
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://www.pintree.io">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Pintree">
-  <meta property="og:description" content="Managing and Exporting your Bookmarks into a Website">
-  <meta property="og:image" content="https://app.pintree.io/assets/og.png">
-
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="Pintree.io">
-  <meta property="twitter:url" content="https://www.pintree.io">
-  <meta name="twitter:title" content="Pintree">
-  <meta name="twitter:description" content="Managing and Exporting your Bookmarks into a Website">
-  <meta name="twitter:image" content="https://app.pintree.io/assets/og.png">
-
-  <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-  <link rel="mask-icon" href="assets/favicon/favicon-32x32.png" color="#0b0b0f">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/tailwind.css">
-
-  <!-- Structured Data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://www.pintree.io",
-    "name": "Pintree",
-    "description": "Managing and Exporting your Bookmarks into a Website",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://www.pintree.io/search?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>地址分布 · 拼夕夕专用</title>
+<style>
+  :root{
+    --bg:#f5f6fa; --card:#ffffff; --ink:#2b2f36; --sub:#8a9099;
+    --blue:#3b7cff; --blue-bg:#eef4ff; --line:#eceef2;
+    --red:#e64545; --orange:#e8833a; --green:#2fa46a;
   }
-  </script>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{overflow-x:hidden;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);padding:28px 16px 60px}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{text-align:center;margin-bottom:30px}
+  header h1{font-size:28px;letter-spacing:6px}
+  header p{color:var(--sub);margin-top:10px;font-size:13px}
+  h4.sec{font-size:19px;margin:30px 0 14px;letter-spacing:2px;display:flex;align-items:center;gap:8px}
+  h4.sec::before{content:"";width:5px;height:20px;border-radius:2px;background:var(--blue)}
+  h5.sec{font-size:15px;color:#5a6068;margin:22px 0 12px;letter-spacing:1px;display:flex;align-items:center;gap:8px}
+  h5.sec::before{content:"";width:3px;height:15px;border-radius:2px;background:#9db9f5}
+  .divider{display:flex;align-items:center;gap:14px;margin:34px 0 6px;color:var(--sub);font-size:12px}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#c9ced8)}
+  .divider::after{background:linear-gradient(90deg,#c9ced8,transparent)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04);transition:box-shadow .2s;overflow:hidden;max-width:100%}
+  .card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .card .region{font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .card .rule{font-size:12px;color:#fff;padding:2px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+  .rule.no{background:var(--red)} .rule.only{background:var(--orange)} .rule.ok{background:var(--green)}
+  .codes{margin:12px 0 4px;display:flex;flex-wrap:wrap;gap:8px}
+  .code{background:var(--blue-bg);color:var(--blue);font-family:ui-monospace,Consolas,monospace;font-size:13px;padding:4px 10px;border-radius:8px;cursor:pointer;user-select:none;transition:transform .1s,background .15s}
+  .code:hover{background:#dce8ff} .code:active{transform:scale(.95)}
+  .field{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;margin-top:8px;border-radius:10px;cursor:pointer;user-select:none;transition:background .15s;border:1px dashed transparent}
+  .field:hover{background:#f6f8fc;border-color:#dfe5ee}
+  .field:active{transform:scale(.99)}
+  .field .label{flex-shrink:0;font-size:12px;color:var(--sub);padding:2px 0;width:34px}
+  .field .val{font-size:14px;line-height:1.55;word-break:break-all;word-wrap:break-word;min-width:0;flex:1;white-space:normal}
+  .field .val.name{font-weight:600}
+  .field .val.phone{font-family:ui-monospace,Consolas,monospace;color:var(--blue);letter-spacing:.5px}
+  .copy-all{margin-top:12px;width:100%;border:none;background:var(--blue);color:#fff;font-size:13px;padding:9px 0;border-radius:10px;cursor:pointer;transition:opacity .15s}
+  .copy-all:hover{opacity:.88} .copy-all:active{opacity:.75}
+  .toast{position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(20px);background:rgba(30,32,36,.92);color:#fff;font-size:14px;padding:10px 22px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;z-index:99;max-width:80vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  footer{text-align:center;color:var(--sub);font-size:12px;margin-top:40px}
+</style>
 </head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>地址分布</h1>
+    <p>共 18 个地址点 · 点击任意项即复制 · <b>点「复制整条」会重新随机生成一套新信息</b></p>
+    <p style="margin-top:6px;font-size:11px;color:#b9bfc8">版本 v7 · 防缓存版</p>
+  </header>
+  <div id="app"></div>
+  <footer>共 18 个地址点</footer>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+var PXX=[
+  {region:"广州登封路",codes:["3968","4121","0318","7092","5423","9212","6797","1167","9382"],name:"张总",phone:"14103453968",addr:"广东省广州市越秀区登峰街道下塘西路200号佳宁广场6号楼1单元203室"},
+  {region:"广州白云街道",codes:["6875","9145","5754","0916","8956","3332","1185","8496","2832"],name:"李伟",phone:"16303419145",addr:"广东省广州市越秀区白云街道东湖路190号深南大厦4号楼1单元201室"},
+  {region:"杭州上城",codes:["7008","2340","1949","4448","7940","4909","8459","0606","8519"],name:"杨坤宁",phone:"16241017008",addr:"浙江省杭州市上城区小营街道福缘巷222号90区8号楼4单元202室"},
+  {region:"温州",codes:["0530","0693","0037","0623","8699"],name:"张总",phone:"14130640693",addr:"浙江省温州市洞头区北岙街道南塘机械汽配园D1幢WJU文具售后仓5栋3单元102室"},
+  {region:"武汉",codes:["8401","5699","5032","6718","8726","6341","9883","3088","9434"],name:"李小松",phone:"14313308401",addr:"湖北省武汉市江岸区新村街道新江岸二村2220号香港路5号楼1单元105室"},
+  {region:"上海杨浦",codes:["6630","9990","0310","6009","4130","7478","8283","5599","0722"],name:"李小松",phone:"14313306630",addr:"上海市杨浦区本溪路168弄大疆路D区5楼105室"}
+];
+var DUSHOU=[
+  {region:"湖北武汉",codes:["2218"],name:"杨坤宁",phone:"16241712218",addr:"湖北省武汉市武昌区中南路宝通寺路百瑞景11期9栋光明超市"},
+  {region:"四川成都",codes:["9036"],name:"杨坤宁",phone:"16241019036",addr:"四川省成都市锦江区春熙路街道北新街33号川航大厦5栋2楼302室"},
+  {region:"浙江杭州",codes:["1613"],name:"杨坤宁",phone:"14306161613",addr:"浙江省杭州市拱墅区潮鸣街道光芒巷13号14栋205室"},
+  {region:"江苏苏州",codes:["2184","9429"],name:"张海迪",phone:"14305412184",addr:"江苏省苏州市吴中区长桥街道甪直镇宝强路20号创智锦城39栋205室"},
+  {region:"天津嘉陵道",codes:["7027","7510"],name:"张继军",phone:"16303417027",addr:"天津市南开区嘉陵道街道雅安道509号ABC7027座江王幸福社区6栋2单元201室"}
+];
+var BUSHOU=[
+  {region:"四川布托",rule:"极兔1元、不收邮政",rtype:"no",codes:["8182","1433"],name:"张飞",phone:"14306468182",addr:"四川省凉山彝族自治州布拖县特木里镇好医生药厂区7栋4单元201室"},
+  {region:"深圳",rule:"只收邮政",rtype:"only",codes:["8751"],name:"小王",phone:"14304018751",addr:"广东省深圳市南山区招商街道花果山国际公寓一期2001座58栋6单元853室"},
+  {region:"上海仙霞",rule:"不收极兔",rtype:"no",codes:["5417"],name:"张总",phone:"14130645417",addr:"上海市长宁区仙霞新村街道虹古路555弄56栋46单元103室"},
+  {region:"广东佛山",rule:"无特殊限制",rtype:"ok",codes:["3368","2623"],name:"李晓峰",phone:"14104913368",addr:"广东省佛山市顺德区北滘镇群力路20号极光社区3368座2栋1单元207房"},
+  {region:"上海杨浦",rule:"不收邮政",rtype:"no",codes:["1406"],name:"张秀",phone:"14306451406",addr:"上海市杨浦区江浦路街道长阳路503弄B区和虹园5楼105号"},
+  {region:"广州荔湾区",rule:"无特殊限制",rtype:"ok",codes:["1433"],name:"李小松",phone:"14306161433",addr:"广东省广州市荔湾区昌华街道多宝路1号钟银巷江王轩光明小区1433座5栋2单元103房"},
+  {region:"重庆渝中区",rule:"只收京东",rtype:"only",codes:["2422"],name:"张继军",phone:"16303412422",addr:"重庆市渝中区人和街62号附5号人和清风广场7栋明日商店"}
+];
+var app=document.getElementById("app");
+function h4(text){var el=document.createElement("h4");el.className="sec";el.textContent=text;app.appendChild(el);}
+function h5(text){var el=document.createElement("h5");el.className="sec";el.textContent=text;app.appendChild(el);}
+function divider(){var el=document.createElement("div");el.className="divider";el.textContent="✂ ··· 从此处分隔 ···";app.appendChild(el);}
 
-<body class="h-full dark:pintree-bg-gray-900 bg-white">
+/* ========== 随机生成规则 ========== */
+// 手机号前三位限定池
+var PREFIXES=["140","142","143","144","160","161","163","164","168","169","154","179","162","170","171","146","165","167"];
+// 随机姓
+var SURNAMES="王李张刘陈杨黄赵吴周徐孙马朱胡郭何高林罗郑梁谢宋唐许韩冯邓曹彭曾萧田董袁潘于蒋蔡余杜叶程苏魏吕丁任沈姚卢姜崔钟谭陆汪范金石廖贾夏韦付方白邹孟熊秦邱江尹薛闫段雷侯龙史陶黎贺顾毛郝龚邵万钱严覃武戴莫孔向汤".split("");
+// 随机名
+var GIVEN=["总","先生","女士","经理","老板","伟","芳","娜","敏","静","丽","强","磊","军","洋","勇","艳","杰","娟","涛","明","超","秀英","华","平","刚","桂英","建华","小松","坤宁","海迪","晓峰","继军","飞","秀","王"];
+// 随机楼栋 / 单元 / 室 数字
+var BLD=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32,33,35,36,38,39,40];
+var UNIT=[1,2,3,4];
+var ROOM=[101,102,103,105,106,201,202,203,205,206,301,302,303,305,306,401,402,403,405,406,501,502,503,505,506,601,602,603,605,606,801,802,803,805,901,902,903,905,1001,1002,1201,1202,1501,1502];
+function rnd(a){return a[Math.floor(Math.random()*a.length)];}
+function rndNum(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+// 补零：不用 String.padStart（微信内置浏览器部分版本不支持，会导致脚本中断）
+function pad0(n,len){
+  var s=String(n);
+  while(s.length<len){s="0"+s;}
+  return s;
+}
+function randName(){return rnd(SURNAMES)+rnd(GIVEN);}
+// 手机号：前三位从池中随机，中间四位随机，后四位 = 该地址所属编号池中随机一个
+function randPhone(codePool){
+  var p=rnd(PREFIXES);
+  var mid=pad0(rndNum(0,9999),4);
+  var tail;
+  if(codePool&&codePool.length){
+    tail=rnd(codePool);
+  }else{
+    tail=pad0(rndNum(0,9999),4);
+  }
+  return p+mid+tail;
+}
+// 地址随机化：只改紧挨「号楼 / 栋 / 单元 / 室 / 房」的数字
+// 「XX号」「XX弄」「XX期」「XX层」「XX楼」「XX座」一律保持原样
+// （原文中「ABC7027座」「一期2001座」「3368座」「1433座」等属于楼盘/期数编码，不能动）
+function randAddr(addr){
+  return addr
+    .replace(/(\d+)号楼/g,function(){return rnd(BLD)+"号楼";})
+    .replace(/(\d+)栋/g,function(){return rnd(BLD)+"栋";})
+    .replace(/(\d+)单元/g,function(){return rnd(UNIT)+"单元";})
+    .replace(/(\d+)室/g,function(){return rnd(ROOM)+"室";})
+    .replace(/(\d+)房/g,function(){return rnd(ROOM)+"房";});
+}
+// 每条卡片只以自己那条地址为模板，绝不抽取其他地址
+// 也就是说：广州登封路永远生成广州登封路的地址，杭州上城永远是福缘巷222号那条
 
-  <div>
-    <!-- Mobile Off-Canvas Menu -->
-    <div id="off-canvas-menu" class="relative z-50 lg:hidden hidden" role="dialog" aria-modal="true">
-      <div id="off-canvas-backdrop"
-        class="fixed inset-0 bg-gray-900/80 opacity-0 transition-opacity ease-linear duration-300"></div>
-      <div class="fixed inset-0 flex">
-        <div id="off-canvas-content"
-          class="relative mr-16 flex w-full max-w-xs flex-1 -translate-x-full transition ease-in-out duration-300 transform">
-          <!-- Close button for the off-canvas menu -->
-          <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-            <button id="close-sidebar-button" type="button" class="-m-2.5 p-2.5">
-              <span class="sr-only">Close sidebar</span>
-              <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          <!-- Off-canvas Sidebar content -->
-          <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:pintree-bg-gray-900 px-6 pb-4">
-            <div class="flex h-16 shrink-0 items-center">
-              <img class="pl-2 h-8 w-auto" src="assets/logo.svg" alt="Pintree">
-              <a href="" class="ml-4 font-extrabold text-2xl dark:text-white">Pintree</a>
-            </div>
-            <div id="sidebar-2" class="flex flex-1 flex-col">
-              <!-- Sidebar content will be injected here -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Static Sidebar for Desktop -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-60 lg:flex-col">
-      <div
-        class="flex flex-col border-r border-gray-200 dark:pintree-border-gray-800 bg-white px-4 h-full font-semibold dark:pintree-bg-gray-900">
-        <div class="flex p-0 h-16 shrink-0 items-center">
-          <img class="pl-2 h-8 w-auto" src="assets/logo.svg" alt="Pintree">
-          <a href="" class="ml-4 font-extrabold text-2xl dark:text-white">Pintree</a>
-        </div>
-        <div class="flex flex-1 flex-col overflow-y-auto no-scrollbar p-1 cursor-pointer">
-          <div id="sidebar" class="flex flex-1 flex-col">
-            <ul id="navigation" class="space-y-1">
-              <!-- Navigation items will be inserted here -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Content Area -->
-    <div class="lg:pl-60 dark:pintree-bg-gray-900 flex flex-col min-h-screen">
-      <div
-        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-gray-200 dark:pintree-border-gray-800 bg-white dark:pintree-bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-        <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
-          <div class="flex gap-x-4 justify-between">
-            <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
-            <div class="hidden lg:block relative w-72 h-full items-center justify-between">
-              <button id="searchButton" class="absolute h-full text-gray-400 rounded">
-                <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
-                  fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd"
-                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                    clip-rule="evenodd"></path>
-                </svg>
-              </button>
-              <input id="searchInput" type="search"
-                class="text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900"
-                placeholder="Search...">
-              <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
-            </div>
-          </div>
-          <a href="" class="lg:hidden ml-4 font-extrabold text-2xl dark:text-white">Pintree</a>
-          <div class="relative">
-            <button id="themeToggleButton" type="button" aria-label="Switch theme"
-              class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">
-              <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true"
-                class="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600">
-                <path
-                  d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z">
-                </path>
-                <path
-                  d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
-                  fill="none"></path>
-              </svg>
-              <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true"
-                class="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500">
-                <path
-                  d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
-                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main content area -->
-      <main class="mt-4 dark:pintree-bg-gray-900 flex-grow">
-        <div id="loading-spinner" class="flex justify-center items-center h-full">
-          <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-400 h-6 w-6"></div>
-        </div>
-        <div id="breadcrumbs" class="mt-2 px-6 text-sm text-gray-400 flex justify-between items-center">
-          <div id="breadcrumbs-path" class="">
-            <!-- Breadcrumbs will be inserted here -->
-          </div>
-        </div>
-        <div id="bookmarks" class="grid gap-6 p-6">
-          <!-- Bookmark cards will be inserted here -->
-        </div>
-      </main>
-
-      <!-- Footer -->
-      <footer class="bg-white w-full dark:pintree-bg-gray-900">
-        <div class="mx-auto px-6 py-6 md:flex md:items-center md:justify-between lg:px-8">
-          <div class="flex justify-center space-x-6 md:order-2">
-            <a href="https://x.com/pintree_io" target="_blank" class="text-gray-400 hover:text-gray-500">
-              <span class="sr-only">X</span>
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
-              </svg>
-            </a>
-            <a href="https://github.com/Pintree-io/pintree" target="_blank" class="text-gray-400 hover:text-gray-500">
-              <span class="sr-only">GitHub</span>
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd"
-                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                  clip-rule="evenodd" />
-              </svg>
-            </a>
-          </div>
-          <div class="mt-8 md:order-1 md:mt-0">
-            <p class="text-center text-xs leading-5 text-gray-500 dark:text-gray-400 flex justify-center items-center">
-              &copy; <span id="currentYear"></span>&nbsp;Built with
-              <a href="https://pintree.io" class="text-green-600 hover:text-green-500 flex items-center ml-1"
-                target="_blank">
-                <svg width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  class="inline-block mr-1">
-                  <g clip-path="url(#clip0_421_47774)">
-                    <path d="M4.27777 9.11133H6.6111V12.0002L5.44444 10.8783L4.27777 12.0002V9.11133Z" fill="#FCB11E" />
-                    <path
-                      d="M9.05557 5.72222L5.22223 0L1.3889 5.72222H2.68634L0.444458 9.11111H10L7.75813 5.72222H9.05557Z"
-                      fill="#2D9C6C" />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_421_47774">
-                      <rect width="9.55556" height="12" fill="white" transform="translate(0.444458)" />
-                    </clipPath>
-                  </defs>
-                </svg>
-                Pintree
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Variables for sidebar elements
-      const openSidebarButton = document.getElementById('open-sidebar-button');
-      const closeSidebarButton = document.getElementById('close-sidebar-button');
-      const offCanvasMenu = document.getElementById('off-canvas-menu');
-      const offCanvasBackdrop = document.getElementById('off-canvas-backdrop');
-      const offCanvasContent = document.getElementById('off-canvas-content');
-
-      // Function to open the sidebar
-      const openSidebar = () => {
-        offCanvasMenu.classList.remove('hidden');
-        setTimeout(() => {
-          offCanvasBackdrop.classList.add('opacity-100');
-          offCanvasContent.classList.add('translate-x-0');
-        }, 10);
-      };
-
-      // Function to close the sidebar
-      const closeSidebar = () => {
-        offCanvasBackdrop.classList.remove('opacity-100');
-        offCanvasContent.classList.remove('translate-x-0');
-        setTimeout(() => {
-          offCanvasMenu.classList.add('hidden');
-        }, 300); // Match the duration of the transition
-      };
-
-      // Event listeners for open and close buttons
-      openSidebarButton.addEventListener('click', openSidebar);
-      closeSidebarButton.addEventListener('click', closeSidebar);
-      offCanvasBackdrop.addEventListener('click', closeSidebar); // Close sidebar when clicking on the backdrop
-    });
-
-    // Search functionality
-    function searchBookmarks(query) {
-      fetch('json/pintree.json')
-        .then(response => response.json())
-        .then(data => {
-          const results = searchInData(data, query.toLowerCase());
-          renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-        })
-        .catch(error => console.error('Error searching bookmarks:', error));
+function grid(cards,groupPool){
+  var g=document.createElement("div");g.className="grid";app.appendChild(g);
+  cards.forEach(function(c){
+    // 初始渲染：姓名/电话/地址即随机生成，显示与复制一致
+    var cur={
+      name:randName(),
+      phone:randPhone(c.codes),
+      addr:randAddr(c.addr)
+    };
+    var ruleCls=c.rtype==="no"?"no":c.rtype==="only"?"only":"ok";
+    var ruleHtml=c.rule?('<span class="rule '+ruleCls+'">'+c.rule+'</span>'):"";
+    var codesHtml=c.codes.map(function(x){
+      return '<span class="code" data-copy="'+x+'">'+x+'</span>';
+    }).join("");
+    var card=document.createElement("div");card.className="card";
+    card.innerHTML=
+      '<div class="region"><span>'+c.region+'</span>'+ruleHtml+'</div>'+
+      '<div class="codes">'+codesHtml+'</div>'+
+      '<div class="field"><span class="label">姓名</span><span class="val name"></span></div>'+
+      '<div class="field"><span class="label">电话</span><span class="val phone"></span></div>'+
+      '<div class="field"><span class="label">地址</span><span class="val addr"></span></div>'+
+      '<button class="copy-all">📋 复制整条（姓名 + 电话 + 地址）</button>';
+    var elName=card.querySelector(".val.name");
+    var elPhone=card.querySelector(".val.phone");
+    var elAddr=card.querySelector(".val.addr");
+    var fName=card.children[2], fPhone=card.children[3], fAddr=card.children[4];
+    function paint(){
+      elName.textContent=cur.name;
+      elPhone.textContent=cur.phone;
+      elAddr.textContent=cur.addr;
+      fName.setAttribute("data-copy",cur.name);
+      fPhone.setAttribute("data-copy",cur.phone);
+      fAddr.setAttribute("data-copy",cur.addr);
     }
-
-    function searchInData(data, query) {
-      let results = [];
-      data.forEach(item => {
-        if (item.title.toLowerCase().includes(query)) {
-          results.push(item);
-        }
-        if (item.children) {
-          const childResults = searchInData(item.children, query);
-          if (childResults.length > 0) {
-            results = results.concat(childResults);
-          }
-        }
-      });
-      return results;
+    // 重新生成一套（复制整条时调用）
+    function regen(){
+      cur={name:randName(),phone:randPhone(c.codes),addr:randAddr(c.addr)};
+      paint();
+      return cur;
     }
+    paint();
+    card.querySelector(".copy-all").onclick=function(){
+      var v=regen();          // 先换新的一整套，再复制，保证复制内容与卡片显示一致
+      copy(v.name+" "+v.phone+" "+v.addr);
+    };
+    g.appendChild(card);
+  });
+}
+/* 大标题「地址分布」已在 header */
+h4("拼夕夕专用");           // 四级标题 1
+grid(PXX,PXX);
+divider();                  // 分界线
+h4("私人地址：");           // 四级标题 2
+h5("都收系列：");           // 五级标题
+grid(DUSHOU,DUSHOU);
+h5("不收、只收系列：");     // 五级标题
+grid(BUSHOU,BUSHOU);
 
-    document.getElementById('searchButton').addEventListener('click', () => {
-      const query = document.getElementById('searchInput').value;
-      searchBookmarks(query);
-    });
-
-    // Clear search results and reset UI
-    function clearSearchResults() {
-      fetch('json/pintree.json')
-        .then(response => response.json())
-        .then(data => {
-          const secondLayer = data[0].children;
-          renderNavigation(secondLayer, document.getElementById('navigation'));
-          renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
-          document.getElementById('searchInput').value = '';
-          document.getElementById('clearSearchButton').classList.add('hidden');
-        })
-        .catch(error => console.error('Error clearing search results:', error));
+var toast=document.getElementById("toast");
+var timer=null;
+function copy(text){
+  function done(){
+    toast.textContent="✅ 已复制："+text;
+    toast.classList.add("show");
+    clearTimeout(timer);
+    timer=setTimeout(function(){toast.classList.remove("show");},1600);
+  }
+  // 老内核 / 非 https 环境下 navigator.clipboard 可能不存在，直接走兜底
+  if(navigator.clipboard&&window.isSecureContext&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){fallback(text,done);});
+  }else{
+    fallback(text,done);
+  }
+}
+function fallback(text,done){
+  var ta=document.createElement("textarea");
+  ta.value=text;
+  ta.setAttribute("readonly","");
+  ta.style.position="fixed";
+  ta.style.top="0";
+  ta.style.left="0";
+  ta.style.opacity="0";
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0,text.length);
+  var ok=false;
+  try{ok=document.execCommand("copy");}catch(e){ok=false;}
+  document.body.removeChild(ta);
+  if(ok){done();}else{alert("复制失败，请长按文本手动选择复制");}
+}
+// 点击委托：不用 Element.closest（极老内核不支持），手动向上查找
+document.addEventListener("click",function(e){
+  var t=e.target;
+  while(t&&t!==document){
+    if(t.getAttribute&&t.getAttribute("data-copy")!==null){
+      copy(t.getAttribute("data-copy"));
+      return;
     }
-
-    document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
-
-    function searchBookmarks(query) {
-      fetch('json/pintree.json')
-        .then(response => response.json())
-        .then(data => {
-          const results = searchInData(data, query.toLowerCase());
-          renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-          document.getElementById('clearSearchButton').classList.remove('hidden');
-        })
-        .catch(error => console.error('Error searching bookmarks:', error));
-    }
-
-    // Create bookmark card element
-    function createCard(title, url, icon) {
-      const card = document.createElement('div');
-      card.className = 'cursor-pointer flex items-center hover:shadow-sm transition-shadow p-4 bg-white shadow-sm ring-1 ring-gray-900/5 dark:pintree-ring-gray-800 rounded-lg hover:bg-gray-100 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
-      card.onclick = () => window.open(url, '_blank'); // Make the whole card clickable
-
-      const cardIcon = document.createElement('img');
-      cardIcon.src = icon || 'assets/default-icon.svg'; // Use provided icon or default icon
-      cardIcon.alt = title;
-      cardIcon.className = 'w-8 h-8 mr-4 rounded-full flex-shrink-0 card-icon-bg'; // Smaller size and rounded
-
-      // Check if the image URL returns 404 and replace it with the default icon if it does
-      cardIcon.onerror = () => {
-        cardIcon.src = 'assets/default-icon.svg';
-      };
-
-      const cardContent = document.createElement('div');
-      cardContent.className = 'flex flex-col overflow-hidden'; // Ensure the content is hidden if too long
-
-      const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-sm font-medium mb-1 truncate dark:text-gray-400';
-      cardTitle.innerText = title;
-
-      // Clean URL by removing http(s) and trailing slash
-      const cleanUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-
-      const cardUrl = document.createElement('p');
-      cardUrl.className = 'text-xs text-gray-400 dark:text-gray-600 dark:hover:text-gray-400 truncate';
-      cardUrl.innerText = cleanUrl; // Use cleaned URL
-
-      cardContent.appendChild(cardTitle);
-      cardContent.appendChild(cardUrl); // Add URL paragraph
-
-      card.appendChild(cardIcon);
-      card.appendChild(cardContent);
-
-      return card;
-    }
-
-    // Create folder card element
-    function createFolderCard(title, children, path) {
-      const card = document.createElement('div');
-      card.className = 'folder-card text-gray rounded-lg cursor-pointer flex flex-col items-center';
-      card.onclick = () => {
-        const newPath = path.concat({ title, children });
-        renderBookmarks(children, newPath);
-        updateSidebarActiveState(newPath); // Update sidebar active state
-      };
-
-      const cardIcon = document.createElement('div');
-      cardIcon.innerHTML = `
-        <svg viewBox="0 0 100 80" class="folder__svg">
-          <rect x="0" y="0" width="100" height="80" class="folder__back" />
-          <rect x="15" y="8" width="70" height="60" class="paper-1" />
-          <rect x="10" y="18" width="80" height="50" class="paper-2" />
-          <rect x="0" y="10" width="100" height="70" class="folder__front" />
-          <rect x="0" y="10" width="100" height="70" class="folder__front right" />
-        </svg>
-      `;
-      cardIcon.className = 'mb-2';
-
-      const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-xs font-normal text-center w-full truncate dark:text-gray-400';
-      cardTitle.innerText = title;
-
-      card.appendChild(cardIcon);
-      card.appendChild(cardTitle);
-
-      return card;
-    }
-
-    // Render sidebar navigation
-    function renderNavigation(folders, container, isFirstRender = false, path = []) {
-      container.innerHTML = ''; // Clear previous content
-      folders.forEach((folder, index) => {
-        if (folder.type === 'folder') {
-          const navItem = document.createElement('li');
-          navItem.className = 'items-center group flex justify-between gap-x-3 rounded-md p-2 text-gray-700 dark:text-gray-400 hover:text-main-500 hover:bg-gray-50 dark:hover:pintree-bg-gray-800 bg-opacity-50';
-
-          const navLinkContainer = document.createElement('div');
-          navLinkContainer.className = 'flex items-center space-x-2 truncate';
-
-          const folderIcon = document.createElement('span');
-          folderIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h4l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>';
-
-          const navLink = document.createElement('a');
-          navLink.className = 'flex text-sm leading-6 font-semibold dark:text-gray-400';
-          navLink.innerText = folder.title;
-
-          navLinkContainer.appendChild(folderIcon);
-          navLinkContainer.appendChild(navLink);
-
-          const toggleIcon = document.createElement('span');
-          toggleIcon.className = 'ml-2 transform transition-transform';
-          toggleIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>';
-
-          navItem.appendChild(navLinkContainer);
-          if (folder.children && folder.children.length > 0) {
-            navItem.appendChild(toggleIcon);
-          }
-          container.appendChild(navItem);
-
-          if (folder.children && folder.children.length > 0) {
-            const subList = document.createElement('ul');
-            subList.className = 'ml-4 space-y-2 hidden';
-            renderNavigation(folder.children, subList, false, path.concat({ title: folder.title, children: folder.children }));
-            container.appendChild(subList);
-
-            if (isFirstRender && index === 0) {
-              // Expand the first item on initial render
-              subList.classList.remove('hidden');
-              toggleIcon.classList.add('rotate-90');
-            }
-
-            navItem.onclick = (e) => {
-              e.stopPropagation();
-              document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
-              navItem.classList.add('sidebar-active');
-              subList.classList.toggle('hidden');
-              if (subList.children.length > 0) {
-                toggleIcon.classList.toggle('rotate-90');
-              }
-              renderBookmarks(folder.children, path.concat({ title: folder.title, children: folder.children }));
-            };
-          } else {
-            navItem.onclick = (e) => {
-              e.stopPropagation();
-              document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
-              navItem.classList.add('sidebar-active');
-              renderBookmarks(folder.children, path.concat({ title: folder.title, children: folder.children }));
-            };
-          }
-        }
-      });
-    }
-
-    // Render breadcrumbs for navigation
-    function renderBreadcrumbs(path) {
-      const breadcrumbsPath = document.getElementById('breadcrumbs-path');
-      breadcrumbsPath.innerHTML = ''; // Clear previous breadcrumbs
-
-      path.forEach((item, index) => {
-        const breadcrumb = document.createElement('span');
-        breadcrumb.className = 'cursor-pointer hover:underline';
-        breadcrumb.innerText = item.title;
-        breadcrumb.onclick = () => {
-          // Render bookmarks for the selected breadcrumb
-          const newPath = path.slice(0, index + 1);
-          renderBookmarks(item.children, newPath);
-          updateSidebarActiveState(newPath); // Update sidebar active state
-          document.getElementById('clearSearchButton').classList.add('hidden'); // Hide clear button when navigating through breadcrumbs
-        };
-
-        breadcrumbsPath.appendChild(breadcrumb);
-
-        if (index < path.length - 1) {
-          const separator = document.createElement('span');
-          separator.innerText = ' > ';
-          breadcrumbsPath.appendChild(separator);
-        }
-      });
-    }
-
-    // Update the active state of sidebar items
-    function updateSidebarActiveState(path) {
-      document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
-
-      let currentNav = document.getElementById('navigation');
-
-      path.forEach((item, index) => {
-        const items = currentNav.querySelectorAll('li');
-        items.forEach(navItem => {
-          const navLink = navItem.querySelector('a');
-          if (navLink && navLink.innerText === item.title) {
-            if (index === path.length - 1) {
-              navItem.classList.add('sidebar-active');
-            }
-
-            if (index < path.length - 1) {
-              const subList = navItem.querySelector('ul');
-              if (subList) {
-                subList.classList.remove('hidden');
-                currentNav = subList;
-              }
-            }
-          }
-        });
-      });
-    }
-
-    // Show a message when no search results are found
-    function showNoResultsMessage() {
-      const container = document.getElementById('bookmarks');
-      container.innerHTML = ''; // Clear previous content
-
-      const messageContainer = document.createElement('div');
-      messageContainer.className = 'flex flex-col items-center justify-center h-full';
-
-      const icon = document.createElement('svg');
-      icon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-      icon.setAttribute('class', 'h-16 w-16 text-gray-500');
-      icon.setAttribute('fill', 'none');
-      icon.setAttribute('viewBox', '0 0 24 24');
-      icon.setAttribute('stroke', 'currentColor');
-      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m9-3a9 9 0 11-18 0 9 9 0 0118 0z" />';
-
-      const title = document.createElement('h2');
-      title.className = 'text-gray-500 text-xl font-semibold mt-4';
-      title.innerText = 'Oops, Nothing to See Here!';
-
-      const message = document.createElement('p');
-      message.className = 'text-gray-500 mt-2';
-      message.innerText = 'Try another search or discover more cool stuff elsewhere!';
-
-      messageContainer.appendChild(icon);
-      messageContainer.appendChild(title);
-      messageContainer.appendChild(message);
-
-      container.appendChild(messageContainer);
-    }
-
-    // Render bookmarks
-    function renderBookmarks(data, path) {
-      const container = document.getElementById('bookmarks');
-      container.innerHTML = ''; // Clear previous content
-
-      // Render breadcrumbs
-      renderBreadcrumbs(path);
-
-      // Separate folders and links
-      const folders = data.filter(item => item.type === 'folder');
-      // const links = data.filter(item => item.type === 'link').sort((a, b) => b.addDate - a.addDate);
-      const links = data.filter(item => item.type === 'link');
-
-      if (folders.length === 0 && links.length === 0) {
-        showNoResultsMessage();
-        return;
-      }
-
-      // Create folder section
-      if (folders.length > 0) {
-        const folderSection = document.createElement('div');
-        folderSection.className = 'grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12 gap-6';
-        folders.forEach(folder => {
-          const card = createFolderCard(folder.title, folder.children, path);
-          folderSection.appendChild(card);
-        });
-        container.appendChild(folderSection);
-      }
-
-      // Add separator line if there are links
-      if (folders.length > 0 && links.length > 0) {
-        const separator = document.createElement('hr');
-        separator.className = 'my-1 border-t-1 border-gray-200 dark:pintree-border-gray-800';
-        container.appendChild(separator);
-      }
-
-      // Create link section
-      if (links.length > 0) {
-        const linkSection = document.createElement('div');
-        linkSection.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6';
-        links.forEach(link => {
-          const card = createCard(link.title, link.url, link.icon);
-          linkSection.appendChild(card);
-        });
-        container.appendChild(linkSection);
-      }
-
-      // Update sidebar active state
-      updateSidebarActiveState(path);
-    }
-
-    // Fetch and render data
-    fetch('json/pintree.json')
-      .then(response => response.json())
-      .then(data => {
-        // Use the first layer of the data directly
-        const firstLayer = data;
-        // Render navigation using the first layer of data
-        renderNavigation(firstLayer, document.getElementById('navigation'), true);
-        // Render bookmarks using the first layer of data, starting from the Bookmark
-        renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
-
-        // Automatically select and show the first item
-        if (firstLayer.length > 0) {
-          const firstItem = firstLayer[0];
-          updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-          renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-        }
-      })
-      .catch(error => console.error('Error loading bookmarks:', error));
-
-    // Search functionality on pressing Enter
-    document.getElementById('searchInput').addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        const query = event.target.value;
-        searchBookmarks(query);
-      }
-    });
-
-    // Search functionality on button click
-    document.getElementById('searchButton').addEventListener('click', function () {
-      const query = document.getElementById('searchInput').value;
-      searchBookmarks(query);
-    });
-
-    // Theme toggle functionality
-    const themeToggleButton = document.getElementById('themeToggleButton');
-    const sunIcon = document.getElementById('sunIcon');
-    const moonIcon = document.getElementById('moonIcon');
-
-    // Apply dark theme
-    function applyDarkTheme() {
-      document.documentElement.classList.add('dark');
-      sunIcon.classList.add('hidden');
-      moonIcon.classList.remove('hidden');
-    }
-
-    // Apply light theme
-    function applyLightTheme() {
-      document.documentElement.classList.remove('dark');
-      sunIcon.classList.remove('hidden');
-      moonIcon.classList.add('hidden');
-    }
-
-    // Toggle theme between dark and light
-    function toggleTheme() {
-      if (document.documentElement.classList.contains('dark')) {
-        applyLightTheme();
-      } else {
-        applyDarkTheme();
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Fetch and render data
-      fetch('json/pintree.json')
-        .then(response => response.json())
-        .then(data => {
-          // Hide loading spinner
-          document.getElementById('loading-spinner').style.display = 'none';
-
-          // Use the first layer of the data directly
-          const firstLayer = data;
-          // Render navigation using the first layer of data
-          renderNavigation(firstLayer, document.getElementById('navigation'), true);
-          // Render bookmarks using the first layer of data, starting from the Bookmark
-          renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
-
-          // Automatically select and show the first item
-          if (firstLayer.length > 0) {
-            const firstItem = firstLayer[0];
-            updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-            renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-          }
-        })
-        .catch(error => {
-          console.error('Error loading bookmarks:', error);
-          // Optionally hide the spinner and show an error message
-          document.getElementById('loading-spinner').style.display = 'none';
-        });
-    });
-
-    // Event listener for theme toggle button
-    themeToggleButton.addEventListener('click', toggleTheme);
-
-    // Automatically apply theme according to system theme settings
-    function applyColorTheme(theme) {
-      if (theme === 'dark') {
-        applyDarkTheme();
-      } else {
-        applyLightTheme();
-      }
-    }
-
-    // Detect initial color theme
-    const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyColorTheme(prefersDarkTheme ? 'dark' : 'light');
-
-    // Listen for changes in the color theme
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-      applyColorTheme(event.matches ? 'dark' : 'light');
-    });
-
-    // Open mobile menu
-    document.getElementById('open-sidebar-button').addEventListener('click', function () {
-      var navigation = document.getElementById('navigation').cloneNode(true);
-      document.getElementById('sidebar-2').appendChild(navigation);
-    });
-
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const yearElement = document.getElementById('currentYear');
-      const currentYear = new Date().getFullYear();
-      yearElement.textContent = currentYear;
-    });
-  </script>
-
+    t=t.parentNode;
+  }
+});
+</script>
 </body>
-
 </html>
